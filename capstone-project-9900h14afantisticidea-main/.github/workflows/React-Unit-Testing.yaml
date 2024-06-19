@@ -1,0 +1,26 @@
+name: Code Formatting
+
+on: [push, pull_request]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node for ReactJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install ReactJS dependencies
+        run: |
+          npm install
+
+      - name: Run ESLint (ReactJS linter)
+        run: |
+          npx eslint .
